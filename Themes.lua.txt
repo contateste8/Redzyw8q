@@ -3,9 +3,11 @@ local Themes = {
     ["Color Hub 1"] = Color3.fromRGB(18, 18, 18),
     ["Color Hub 2"] = Color3.fromRGB(25, 25, 25),
 
-    ["Color Theme"] = ColorSequence.new({
-      ColorSequenceKeypoint.new(0.00, Color3.fromRGB(123, 198, 204)),
-      ColorSequenceKeypoint.new(1.00, Color3.fromRGB(190, 147, 197))
+    ["Color Theme"] = Color3.fromRGB(30, 150, 240),
+
+    ["Gradient Theme"] = ColorSequence.new({
+      ColorSequenceKeypoint.new(0, Color3.fromHex("#7bc6cc")),
+      ColorSequenceKeypoint.new(1, Color3.fromHex("#be93c5"))
     }),
 
     ["Color Text"] = Color3.fromRGB(240, 240, 240),
