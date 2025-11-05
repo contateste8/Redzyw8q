@@ -2,14 +2,13 @@ local Themes = {
   ["Default"] = {
     ["Color Hub 1"] = Color3.fromRGB(18, 18, 18),
     ["Color Hub 2"] = Color3.fromRGB(25, 25, 25),
-
-    ["Color Theme"] = Color3.fromRGB(1, 1, 1),
-
-    ["Gradient Theme"] = ColorSequence.new({
-      ColorSequenceKeypoint.new(0, Color3.fromHex("#7bc6cc")),
-      ColorSequenceKeypoint.new(1, Color3.fromHex("#be93c5"))
-    }),
-
+    ["Color Theme"] = {
+      Type = "Gradient",
+      Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 100, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 200))
+      }
+    },
     ["Color Text"] = Color3.fromRGB(240, 240, 240),
     ["Color Dark Text"] = Color3.fromRGB(200, 200, 200),
     ["Color Stroke"] = Color3.fromRGB(80, 80, 80),
