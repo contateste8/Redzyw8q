@@ -423,18 +423,25 @@ function redzLib:SetTheme(themeName)
     Intance.TextColor3 = Theme["Color Dark Text"]
   end)
 table.foreach(Save.Theme, function(_, instance)
-    if not instance then return end
-    local themeColor = Theme["Color Theme"]
+	if not instance or not instance:IsA("GuiObject") then return end
+	local themeColor = Theme["Color Theme"]
 
-    if typeof(themeColor) == "table" and themeColor.Type == "Gradient" then
-        instance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        local grad = instance:FindFirstChildOfClass("UIGradient") or Instance.new("UIGradient", instance)
-        grad.Color = themeColor.Color
-    else
-        instance.BackgroundColor3 = themeColor
-        local oldGrad = instance:FindFirstChildOfClass("UIGradient")
-        if oldGrad then oldGrad:Destroy() end
-    end
+	if typeof(themeColor) == "table" and themeColor.Type == "Gradient" then
+		instance.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+		local oldGrad = instance:FindFirstChildOfClass("UIGradient")
+		if oldGrad then oldGrad:Destroy() end
+
+		local grad = Instance.new("UIGradient")
+		grad.Color = themeColor.Color
+		grad.Rotation = 90
+		grad.Parent = instance
+
+	else
+		local oldGrad = instance:FindFirstChildOfClass("UIGradient")
+		if oldGrad then oldGrad:Destroy() end
+		instance.BackgroundColor3 = themeColor
+	end
 end)
   table.foreach(Save.Toggle, function(_,table)
     if not table[1] then return end
