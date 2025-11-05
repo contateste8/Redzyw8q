@@ -12,7 +12,7 @@ local redzLib = {
     Version = "v1.2.1",
     PlaceName = MarketplaceService:GetProductInfo(game.PlaceId).Name
   },
-  Themes = loadstring(game:HttpGet("https://github.com/contateste8/Redzyw8q/raw/refs/heads/main/Themes.lua.txt"))(),
+  Themes = loadstring(game:HttpGet("https://github.com/contateste8/RedzLibV4Neo/raw/refs/heads/main/Themes.lua"))(),
   Flags = {},
   Save = {
     Theme = "Default",
@@ -63,12 +63,20 @@ local ViewportSize = workspace.CurrentCamera.ViewportSize
 local UIScale = ViewportSize.Y / 550
 
 local function SetProps(Instance, props)
-  if props and typeof(props) == "table" then
-    table.foreach(props, function(prop, value)
-      Instance[prop] = value
-    end)
-  end
-  return Instance
+	if props and typeof(props) == "table" then
+		for prop, value in pairs(props) do
+			if prop == "BackgroundColor3" and typeof(value) == "ColorSequence" then
+				local grad = Instance:FindFirstChildOfClass("UIGradient") or Instance.new("UIGradient")
+				grad.Color = value
+				grad.Rotation = 90
+				grad.Name = "ThemeGradient"
+				grad.Parent = Instance
+			else
+				Instance[prop] = value
+			end
+		end
+	end
+	return Instance
 end
 
 local function SetChildren(Instance, children)
